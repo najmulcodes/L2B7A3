@@ -159,3 +159,21 @@ SELECT
 FROM users u
 LEFT JOIN bookings b ON u.user_id = b.user_id
 ORDER BY u.user_id;
+
+
+-- ================================================================
+-- QUERY 6
+-- Find bookings where total_cost is above the overall average.
+-- Concepts: scalar subquery, AVG
+-- AVG(150, 120, 150, 150, 120) = 138 → returns rows > 138
+-- ================================================================
+
+SELECT
+    booking_id,
+    match_id,
+    total_cost
+FROM bookings
+WHERE total_cost > (
+    SELECT AVG(total_cost)
+    FROM bookings
+);
