@@ -16,3 +16,16 @@ CREATE TABLE IF NOT EXISTS users (
     role         VARCHAR(50)  NOT NULL CHECK (role IN ('Ticket Manager', 'Football Fan')),
     phone_number VARCHAR(20)
 );
+
+
+-- ================================================================
+-- SCHEMA: matches
+-- ================================================================
+
+CREATE TABLE IF NOT EXISTS matches (
+    match_id             SERIAL PRIMARY KEY,
+    fixture              VARCHAR(150) NOT NULL,
+    tournament_category  VARCHAR(100) NOT NULL,
+    base_ticket_price    NUMERIC(10, 2) NOT NULL,
+    match_status         VARCHAR(50)  NOT NULL CHECK (match_status IN ('Available', 'Selling Fast', 'Sold Out', 'Postponed'))
+);
