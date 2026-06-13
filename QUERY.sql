@@ -143,3 +143,19 @@ SELECT
 FROM bookings b
 INNER JOIN users   u ON b.user_id  = u.user_id
 INNER JOIN matches m ON b.match_id = m.match_id;
+
+
+-- ================================================================
+-- QUERY 5
+-- List all users and their booking IDs.
+-- Users with no bookings must still appear (NULL booking_id).
+-- Concepts: LEFT JOIN
+-- ================================================================
+
+SELECT
+    u.user_id,
+    u.full_name,
+    b.booking_id
+FROM users u
+LEFT JOIN bookings b ON u.user_id = b.user_id
+ORDER BY u.user_id;
