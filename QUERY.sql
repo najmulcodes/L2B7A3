@@ -177,3 +177,19 @@ WHERE total_cost > (
     SELECT AVG(total_cost)
     FROM bookings
 );
+
+
+-- ================================================================
+-- QUERY 7
+-- Retrieve the 2nd and 3rd most expensive matches by
+-- base_ticket_price (skip rank #1 using OFFSET 1).
+-- Concepts: ORDER BY DESC, LIMIT, OFFSET
+-- ================================================================
+
+SELECT
+    match_id,
+    fixture,
+    base_ticket_price
+FROM matches
+ORDER BY base_ticket_price DESC
+LIMIT 2 OFFSET 1;
