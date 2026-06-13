@@ -29,3 +29,17 @@ CREATE TABLE IF NOT EXISTS matches (
     base_ticket_price    NUMERIC(10, 2) NOT NULL,
     match_status         VARCHAR(50)  NOT NULL CHECK (match_status IN ('Available', 'Selling Fast', 'Sold Out', 'Postponed'))
 );
+
+
+-- ================================================================
+-- SCHEMA: bookings  (FK → users, FK → matches)
+-- ================================================================
+
+CREATE TABLE IF NOT EXISTS bookings (
+    booking_id     SERIAL PRIMARY KEY,
+    user_id        INT  NOT NULL REFERENCES users(user_id)   ON DELETE CASCADE,
+    match_id       INT  NOT NULL REFERENCES matches(match_id) ON DELETE CASCADE,
+    seat_number    VARCHAR(10),
+    payment_status VARCHAR(20) CHECK (payment_status IN ('Pending', 'Confirmed', 'Cancelled', 'Refunded')),
+    total_cost     NUMERIC(10, 2) NOT NULL
+);
