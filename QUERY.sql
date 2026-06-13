@@ -94,3 +94,19 @@ SELECT
 FROM matches
 WHERE tournament_category = 'Champions League'
   AND match_status = 'Available';
+
+
+-- ================================================================
+-- QUERY 2
+-- Search for users whose full name starts with 'Tanvir' OR
+-- contains 'Haque' — case-insensitive.
+-- Concepts: ILIKE
+-- ================================================================
+
+SELECT
+    user_id,
+    full_name,
+    email
+FROM users
+WHERE full_name ILIKE 'Tanvir%'
+   OR full_name ILIKE '%Haque%';
